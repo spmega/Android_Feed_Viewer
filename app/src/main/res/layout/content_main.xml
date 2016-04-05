@@ -13,7 +13,37 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
+        android:id="@+id/anchor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/appDesc"
+        android:layout_below="@+id/anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I am going to fetch whatever rss feed you want"
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/options"
+        android:layout_below="@+id/appDesc"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter a url to fetch the rss feed"
+        android:textSize="20dp"/>
+    <EditText
+        android:id="@+id/rssField"
+        android:layout_below="@+id/options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/fetchButton"
+        android:layout_below="@+id/rssField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Fetch"
+        android:onClick="onClickFetchButton"/>
 </RelativeLayout>
