@@ -1,6 +1,7 @@
 package com.example.shashank.feedviewer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.logging.Handler;
 
 public class MainActivity extends AppCompatActivity {
     private Button fetchButton = null;
@@ -56,38 +58,17 @@ public class MainActivity extends AppCompatActivity {
         rssField = (EditText) findViewById(R.id.rssField);
     }
 
-    public void onClickFetchButton(){
+    public void onClickFetchButton(View view){
         Editable data = rssField.getText();
         String urlString = data.toString();
-        URL url = null;
-        HttpURLConnection conn = null;
-        XmlPullParserFactory xmlPullParserFactory = null;
-        XmlPullParser xmlPullParser = null;
 
-
-        if(!checkIfConnected()){
+        /*if(!checkIfConnected()){
             finish();
-        }
+        }*/
 
-        try {
-            xmlPullParserFactory = XmlPullParserFactory.newInstance();
-            xmlPullParser = xmlPullParserFactory.newPullParser();
-
-            url = new URL(urlString);
-            conn = (HttpURLConnection) url.openConnection();
-            conn.connect();
-
-            xmlPullParser.setInput(new BufferedReader(new InputStreamReader(conn.getInputStream())));
-
-            Toast.makeText(context, "set up the xmlPullParser", Toast.LENGTH_SHORT);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
-
+        Intent intent = new Intent(this, ResultActiviy.class);
+        intent.putExtra("url", urlString);
+        startActivity(intent);
     }
 
     public boolean checkIfConnected(){
